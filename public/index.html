@@ -2,16 +2,16 @@
 <html>
 <head>
     <title>My Image Board</title>
-    <link href="/style.css">
+<link href="/style.css" rel="stylesheet">
 </head>
 <body>
     <div id="main">
         <from>
-                <input type="text" name="title" placeholder="title">
-                <input type="text" name="name" placeholder="name">
-                <input type="text" name="description" placeholder="description">
-                <input type="file" accept="image/*">
-                <button>upload!</button>
+                <input v-model ="form.title" type="text" name="title" placeholder="Title">
+                <input v-model ="form.name" type="text" name="name" placeholder="Name">
+                <input v-model ="form.description" type="text" name="description" placeholder="Description">
+                <input id ="file" type="file" accept="image/*">
+                <button @click = 'uploadFile'>upload!</button>
         </form>
 
                 <div id="img-container" v-if="images.length > 0">

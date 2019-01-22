@@ -6,3 +6,9 @@ db.getImages().then(results => {
     console.log("results: ", results);
     res.json(results);
 });
+images are the image array and app.get take the image form there.
+<div class="images-container"
+    v-if="images.length"
+v-on: is equal to @click in vue.
+there is ot difference between single quote or double quote
+in method we tell to the user dont refresh the page for upload the file. its a single page program.
