@@ -39,10 +39,11 @@ app.post('/upload',uploader.single('file'),s3.upload,(req, res)=>{
     //make new imge render automatically on screen(without reloading the image)
     // res.render('images', ());
     db.addImage(
+        config.s3Url + req.file.filename,
         req.body.title,
         req.body.name,
-        req.body.description,
-        config.s3Url + req.file.filename
+        req.body.description
+
     ).then(
         ({rows})=>{
             res.json({

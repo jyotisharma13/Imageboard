@@ -37,8 +37,8 @@
                 var formData =  new FormData();
                 formData.append('file', uploadedFile);
                 formData.append('title',this.form.title);
-                formData.append('description',this.form.description);
                 formData.append('name',this.form.name);
+                formData.append('description',this.form.description);
                 // post/upload and we are sending files, title, name , description to server as part of the request
                 axios.post('/upload', formData).then(function(){
 
