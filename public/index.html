@@ -1,10 +1,20 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
+    <title>My Image Board</title>
+    <link href="/style.css">
 </head>
 <body>
+    <div id="main">
+        <div id="img-container" v-if="images.length > 0">
+                   <div v-for="Img in images" class="img-card">
+                       <img v-bind:src="Img.url">
+                       <p>{{Img.title}}</p>
+                   </div>
+               </div>
+    </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
