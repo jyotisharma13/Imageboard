@@ -5,25 +5,53 @@
 <link href="/style.css" rel="stylesheet">
 </head>
 <body>
+
+    <h2>My Images Board</h2>
     <div id="main">
         <from>
+            <br>
                 <input v-model ="form.title" type="text" name="title" placeholder="Title">
                 <input v-model ="form.name" type="text" name="name" placeholder="Name">
                 <input v-model ="form.description" type="text" name="description" placeholder="Description">
                 <input id ="file" type="file" accept="image/*">
                 <button @click = 'uploadFile'>upload!</button>
+                <br>
         </form>
 
+
+            <br><br>
                 <div id="img-container" v-if="images.length > 0">
-                   <div v-for="Img in images" class="img-class">
+                   <div v-for="Img in images" class="img-cards">
                        <img v-bind:src="Img.url">
                        <p>{{Img.title}}</p>
                    </div>
                </div>
 
+
+
+
+            <button @click="showModal = true">Button!</button>
+            <modal v-bind:currentimage="currentimage" v-if="showModal" @close="showModal = false"> </modal>
+            </div>
+
+            <script type="text/x-template" id="modal-template">
+                <div class="modalContainer">
+                    <!-- <div class="section"> -->
+                    <img :src="url">
+                    <h2>{{title}}</h2>
+                    <p>{{description}}</p>
+                    <h6>uploaded by {{username}} on {{uploadTime}}</h6>
+                <!-- </div> -->
+                    <h1 @click="clickHandler">{{name}}</h1>
+                  <button @click="$emit('close')">X</button>
+                </div>
+            </script>
+
     </div>
+
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/modal.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

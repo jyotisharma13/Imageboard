@@ -4,6 +4,8 @@
         el: '#main',
         data: {
             images: [],
+            currentimage:null,
+            showModal: false,
             form:{
                 title:'',
                 name:'',
@@ -16,7 +18,7 @@
             // then runs when we get the respose fron the server
             axios.get('/images').then(function(response) {
                 console.log("response form the images: ", response);
-                self.images = response.data;
+                self.images = response.data.reverse();
             });
         }, // mounted ends here and make sure that there is comma
         // every function that i want to run in response to end event.
@@ -45,8 +47,6 @@
                 });
                 // logging formData gives you empty things
                 // console.log('formData',formData);
-
-
             } // end uploadFile
         } //end methods here
     });

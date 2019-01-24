@@ -20,3 +20,13 @@ module.exports.addImage = function(url, title, username, description) {
         [url, title, username, description]
     );
 };
+/////////////////////////////////////get comment
+module.exports.getComment = function(){
+    return db.query(`SELECT * FROM comments`);
+};
+//////////// add comment//////////////////////
+module.exports.addComment = function(comment, username){
+    return db.query(`INSERT INTO (comment, username) values ($1, $2) returning *`,
+        [comment, username]
+    );
+};
