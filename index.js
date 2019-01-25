@@ -105,6 +105,7 @@ app.get("/currentimageData/:id", (req, res) => {
 /////////////////////////////////////////////77
 app.post("/postComment", (req, res) => {
     console.log("req.body", req.body);
+    console.log(res.body);
     db.addComment(req.body.x, req.body.y, req.body.z);
 });
 app.listen(8080, () => console.log(`I'm listening.`));

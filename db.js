@@ -40,6 +40,7 @@ module.exports.currentimageData = function(id) {
         [id]
     );
 };
+///////////////////////////////////////
 module.exports.addComment = function(username, comment, image_id) {
     return db.query(
         `INSERT INTO comments (username, comment, image_id)
@@ -47,6 +48,7 @@ VALUES ($1, $2, $3) RETURNING *`,
         [username, comment, image_id]
     );
 };
+////////////////////////////////////////////////
 module.exports.currentimageComments = function(image_id) {
     return db.query(
         `SELECT username, comment FROM comments
@@ -54,6 +56,7 @@ module.exports.currentimageComments = function(image_id) {
         [image_id]
     );
 };
+///////////////////////////////////////////7
 module.exports.getLowest = function() {
     return db.query(
         `SELECT id FROM images
@@ -61,14 +64,3 @@ module.exports.getLowest = function() {
     LIMIT 1`
     );
 };
-/////////////////////////////////////get comment
-// module.exports.getComment = function(image_id){
-//     return db.query(`SELECT * FROM comments WHERE image_id = $1`,
-//         [image_id]);
-// };
-//////////// add comment//////////////////////
-// module.exports.addComment = function(name, comment, image_id){
-//     return db.query(`INSERT INTO (username,comment,image_id) values ($1, $2,$3) returning *`,
-//         [name, comment, image_id]
-//     );
-// };

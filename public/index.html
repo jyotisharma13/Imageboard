@@ -8,6 +8,7 @@
 
     <h2>My Images Board</h2>
     <div id="main">
+
         <from>
             <br>
                 <input v-model ="form.title" type="text" name="title" placeholder="Title">
@@ -32,16 +33,21 @@
              <!-- modal template -->
       <script type="text/x-template" id="modal-template">
             <div class="modalContainer">
-                <button @click="$emit('close')">Close</button>
+                <div id="imagebox">
+                <button id="close" @click="$emit('close')">X</button>
                 <div class="dataContainer">
                 <img class="modalImage" :src="currentimageurl">
                 <p>
-                {{currentimagetitle}} , {{currentimagedescription}},{{currentimageusername}}, {{currentimagecreatedate}}
+                <br>  {{currentimagetitle}}
+                <br>  {{currentimagedescription}}
+                <br>  {{currentimageusername}}
+                <br>  {{currentimagecreatedate}}
                 </p>
                 <comment-input v-bind:currentimage="currentimage"></comment-input>
                 <ul v-for="comment in comments">
-                <li>Username: {{comment.username}} : Comment: {{comment.comment}}</li>
+                <li> {{comment.username}} <br> {{comment.comment}}  {{comment.created_at}}</li>
                 </ul>
+                </div>
                 </div>
             </div>
       </script>
@@ -49,8 +55,9 @@
         <script type="text/x-template" id="comment-input-template">
             <div>
                 <h1>Add a comment</h1>
-                <input v-model="comment" type="text" name="comment">
-                <input v-model= "commentusername" type="text" name="username">
+                <input v-model= "commentusername" type="text"placeholder="Name" name="username">
+                <input v-model="comment" type="text"placeholder="Comment" name="comment">
+                <input v-model="comment" type="hidden" name="created_at">
                 <button @click="postComment" name="submit">Submit</button>
             </div>
         </script>

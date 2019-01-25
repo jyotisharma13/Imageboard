@@ -28,10 +28,36 @@ img {
 }
 .modalContainer {
   position: fixed;
-  background: aqua;
+  background: orange;
   /* opacity: 0.5; */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+}
+#imagebox{
+    text-decoration: center;
+    text-align: center;
+    background-color: black;
+    margin:0 auto;
+    width:80%;
+    height:100%;
+    border:1px solid black;
+    justify-content: center;
+    color: white;
+
+
+}
+ul{
+        list-style-type: none;
+    }
+#close{
+    float: right;
+    /* align-items: right;
+    justify-content: right; */
+}
+form{
+    width:500px;
+    height:100px;
+    border:1px solid #000;
 }

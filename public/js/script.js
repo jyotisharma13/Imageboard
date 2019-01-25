@@ -60,14 +60,34 @@
                 self.showModal = true;
                 console.log("currentimage", self.currentimage);
             },
-
             moreImages: function() {
+                var moreButton = document.getElementById("moreButton");
+
                 axios.get("/moreImages/" + this.images[this.images.length - 1].id).then(
                     function(response) {
                         console.log("RESPONSE.dataMoreIMAGES!!!!!!!!!!!!!!", response.data);
-                        this.images = this.images.concat(response.data);
+
+                        this.images = this.images.concat(response.data[0]);
+                        console.log("this.images!!!!!!!!!!!!!   ", this.images);
+                        console.log(
+                            "id of last image in images",
+                            this.images[this.images.length - 1].id
+                        );
+
+                        if (
+                            this.images[this.images.length - 1].id <=
+                          response.data[1].rows[0].id
+                        ) {
+                            moreButton.style.display = "none";
+                        }
                     }.bind(this)
                 );
+            },
+            closeModal: function() {
+                window.location.hash = "";
+                this.showModal = false;
+                this.currentimage = null;
+                console.log("this.showModal", this.showModal);
             }
         } //end methods here
     });
