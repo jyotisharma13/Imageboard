@@ -17,41 +17,47 @@
                 <button @click = 'uploadFile'>upload!</button>
                 <br>
         </form>
-
-
             <br><br>
                 <div id="img-container" v-if="images.length > 0">
-                   <div v-for="Img in images" class="img-cards">
+                   <div v-for="Img in images":id="Img.id" @click="clicked" class="img-cards">
                        <img v-bind:src="Img.url">
                        <p>{{Img.title}}</p>
                    </div>
                </div>
-
-
-
-
-            <button @click="showModal = true">Button!</button>
-            <modal v-bind:currentimage="currentimage" v-if="showModal" @close="showModal = false"> </modal>
-            </div>
-
-            <script type="text/x-template" id="modal-template">
-                <div class="modalContainer">
-                    <!-- <div class="section"> -->
-                    <img :src="url">
-                    <h2>{{title}}</h2>
-                    <p>{{description}}</p>
-                    <h6>uploaded by {{username}} on {{uploadTime}}</h6>
-                <!-- </div> -->
-                    <h1 @click="clickHandler">{{name}}</h1>
-                  <button @click="$emit('close')">X</button>
-                </div>
-            </script>
+               <button @click="showModal = true">Button!</button>
+               <button @click="moreImages" id="moreButton">More</button>
+               <modal v-bind:currentimage="currentimage"  v-if="currentimage" @close="currentimage = null">
 
     </div>
+             <!-- modal template -->
+      <script type="text/x-template" id="modal-template">
+            <div class="modalContainer">
+                <button @click="$emit('close')">Close</button>
+                <div class="dataContainer">
+                <img class="modalImage" :src="currentimageurl">
+                <p>
+                {{currentimagetitle}} , {{currentimagedescription}},{{currentimageusername}}, {{currentimagecreatedate}}
+                </p>
+                <comment-input v-bind:currentimage="currentimage"></comment-input>
+                <ul v-for="comment in comments">
+                <li>Username: {{comment.username}} : Comment: {{comment.comment}}</li>
+                </ul>
+                </div>
+            </div>
+      </script>
 
+        <script type="text/x-template" id="comment-input-template">
+            <div>
+                <h1>Add a comment</h1>
+                <input v-model="comment" type="text" name="comment">
+                <input v-model= "commentusername" type="text" name="username">
+                <button @click="postComment" name="submit">Submit</button>
+            </div>
+        </script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/modal.js"></script>
+    <script src="/js/comments.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

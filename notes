@@ -1,8 +1,8 @@
 in part 3 we have to use one component
 component are in vue is a short of mini vue instance.
-it can be placed in other component.
+
 its a reusable things in component
-its a very well in react
+
 browser are implimented in web component
 in this we can create our own html tag
 vue component are inspired by web component

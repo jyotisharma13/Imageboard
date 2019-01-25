@@ -1,11 +1,12 @@
-
 (function() {
     new Vue({
         el: '#main',
         data: {
             images: [],
+            title:[],
             currentimage:null,
             showModal: false,
+            comment:"",
             form:{
                 title:'',
                 name:'',
@@ -18,7 +19,7 @@
             // then runs when we get the respose fron the server
             axios.get('/images').then(function(response) {
                 console.log("response form the images: ", response);
-                self.images = response.data.reverse();
+                self.images = response.data;
             });
         }, // mounted ends here and make sure that there is comma
         // every function that i want to run in response to end event.
@@ -42,12 +43,32 @@
                 formData.append('name',this.form.name);
                 formData.append('description',this.form.description);
                 // post/upload and we are sending files, title, name , description to server as part of the request
-                axios.post('/upload', formData).then(function(){
-
+                axios.post('/upload', formData).then(function(response){
+                    var self  = this;
+                    console.log("response: ", response);
+                    console.log("self: ", self);
+                    self.images.unshift(response.data);
                 });
                 // logging formData gives you empty things
                 // console.log('formData',formData);
-            } // end uploadFile
+            }, // end uploadFile
+            clicked: function(e) {
+                var self = this;
+                console.log("e.target", e.currentTarget);
+                console.log("clicked!!!!!");
+                self.currentimage = e.currentTarget.id;
+                self.showModal = true;
+                console.log("currentimage", self.currentimage);
+            },
+
+            moreImages: function() {
+                axios.get("/moreImages/" + this.images[this.images.length - 1].id).then(
+                    function(response) {
+                        console.log("RESPONSE.dataMoreIMAGES!!!!!!!!!!!!!!", response.data);
+                        this.images = this.images.concat(response.data);
+                    }.bind(this)
+                );
+            }
         } //end methods here
     });
 })();
