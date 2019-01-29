@@ -87,7 +87,7 @@ app.post('/comment/:id/add', (req, res) => {
 /////////////////////////////////////////////
 app.get("/moreImages/:id", (req, res) => {
     Promise.all([db.getMoreImages(req.params.id), db.getLowest()]).then(data => {
-        console.log("data!!!!!!!!!!!!!!!!!!!!!!", data);
+        console.log("data in more images", data);
         res.json(data);
     });
 });
@@ -106,6 +106,6 @@ app.get("/currentimageData/:id", (req, res) => {
 app.post("/postComment", (req, res) => {
     console.log("req.body", req.body);
     console.log(res.body);
-    db.addComment(req.body.x, req.body.y, req.body.z);
+    db.addComment(req.body.x, req.body.y, req.body.z, req.body.a);
 });
 app.listen(8080, () => console.log(`I'm listening.`));

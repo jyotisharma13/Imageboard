@@ -6,15 +6,16 @@
 </head>
 <body>
 
-    <h2>My Images Board</h2>
+    <h2>My favourite Indian Dance form Images Board</h2>
     <div id="main">
 
-        <from>
+        <from id="form">
             <br>
                 <input v-model ="form.title" type="text" name="title" placeholder="Title">
                 <input v-model ="form.name" type="text" name="name" placeholder="Name">
                 <input v-model ="form.description" type="text" name="description" placeholder="Description">
                 <input id ="file" type="file" accept="image/*">
+
                 <button @click = 'uploadFile'>upload!</button>
                 <br>
         </form>
@@ -25,8 +26,8 @@
                        <p>{{Img.title}}</p>
                    </div>
                </div>
-               <button @click="showModal = true">Button!</button>
-               <button @click="moreImages" id="moreButton">More</button>
+               <!-- <button @click="showModal = true">Button!</button> -->
+               <button @click="moreImages" id="moreButton"background-color="gold"color="black">More</button>
                <modal v-bind:currentimage="currentimage"  v-if="currentimage" @close="currentimage = null">
 
     </div>
@@ -45,7 +46,7 @@
                 </p>
                 <comment-input v-bind:currentimage="currentimage"></comment-input>
                 <ul v-for="comment in comments">
-                <li> {{comment.username}} <br> {{comment.comment}}  {{comment.created_at}}</li>
+                <li> {{comment.username}} <br> {{comment.comment}}   {{currentimagecreatedate}}</li>
                 </ul>
                 </div>
                 </div>
@@ -57,7 +58,7 @@
                 <h1>Add a comment</h1>
                 <input v-model= "commentusername" type="text"placeholder="Name" name="username">
                 <input v-model="comment" type="text"placeholder="Comment" name="comment">
-                <input v-model="comment" type="hidden" name="created_at">
+                <!-- <input type="button" value="Refresh Page" onClick="location.href=location.href"> -->
                 <button @click="postComment" name="submit">Submit</button>
             </div>
         </script>

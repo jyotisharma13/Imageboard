@@ -1,11 +1,16 @@
+
 (function() {
     new Vue({
         el: '#main',
         data: {
+            username:"meenu",
+            classname:"jyoti",
             images: [],
             title:[],
-            currentimage:null,
-            showModal: false,
+            showModal: !!window.location.hash.slice(1),
+            currentimage: window.location.hash.slice(1),
+            // currentimage:null,
+            // showModal: false,
             comment:"",
             form:{
                 title:'',
@@ -17,6 +22,14 @@
         mounted: function() {
             var self= this;
             // then runs when we get the respose fron the server
+            window.addEventListener(
+                "hashchange",
+                function() {
+                    this.currentimage = window.location.hash.slice(1);
+                    this.showModal = !!this.currentimage;
+                }.bind(this)
+            );
+
             axios.get('/images').then(function(response) {
                 console.log("response form the images: ", response);
                 self.images = response.data;
@@ -48,17 +61,17 @@
                     console.log("response: ", response);
                     console.log("self: ", self);
                     self.images.unshift(response.data);
+                    
                 });
                 // logging formData gives you empty things
                 // console.log('formData',formData);
             }, // end uploadFile
             clicked: function(e) {
-                var self = this;
                 console.log("e.target", e.currentTarget);
                 console.log("clicked!!!!!");
-                self.currentimage = e.currentTarget.id;
-                self.showModal = true;
-                console.log("currentimage", self.currentimage);
+                this.currentimage = e.currentTarget.id;
+                this.showModal = true;
+                console.log("currentimage", this.currentimage);
             },
             moreImages: function() {
                 var moreButton = document.getElementById("moreButton");
