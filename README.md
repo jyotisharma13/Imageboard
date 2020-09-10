@@ -2,7 +2,7 @@ Image-board Indian Dance forms
 
 Summary
 
-This is a site where you can upload pictures of Indain Dance Forms.
+This is a site where you can upload pictures of Indian Dance Forms.
 
 Tech used:
 
